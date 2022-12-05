@@ -1,0 +1,7 @@
+{
+ "database_path": "~/data/py/user_group_overlap/data/",
+ "database_name": "raw_data.xlsx",
+ "sheet1": "dev_w_rbac",
+ "sheet2": "repo_w_dev",
+ "sheet3": "rbac_roles"
+}
