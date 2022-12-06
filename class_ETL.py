@@ -6,7 +6,8 @@ from class_DataLoader import DataLoader
 class ETL:
     df_enhanced_data = pd.DataFrame
 
-    def __init__(self, data_specs):
+    def __init__(self, data_specs, filepath_export: str):
+        self.filepath_export = filepath_export
         self.importer = DataLoader(data_specs)
         self.load_data()
 
@@ -26,9 +27,8 @@ class ETL:
         self.df_enhanced_data = pd.merge(self.raw_data["dev_w_rbac"], self.raw_data["repo_w_dev"], left_index=True, right_index=True)
 
     def save_final_df(self):
-        database_path = self.importer.database_config["database_path"]
         enhanced_data_file_name = "enhanced_data.xlsx"
-        self.df_enhanced_data.to_excel(os.path.join(database_path, enhanced_data_file_name))
+        self.df_enhanced_data.to_excel(os.path.join(self.filepath_export, enhanced_data_file_name))
 
     def run(self):
         self.enhance_data()
